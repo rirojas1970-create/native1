@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useMemo } from 'react';
-
+import OFERTAS_CONFIG from '../data/ofertas.json';
 // 1. Inicializamos el contexto del carrito
 const CarritoContext = createContext();
 
@@ -39,30 +39,71 @@ export function CarritoProvider({ children }) {
   // Limpia el estado tras finalizar la orden de compra
   const vaciarCarrito = () => setCarrito([]);
 
-  // Optimización de rendimiento mediante useMemo:
-  // Solo recalcula los totales si los artículos del carrito cambian
-  const { precioTotal, cantidadTotal } = useMemo(() => {
-    const totalPrecio = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
-    const totalCantidad = carrito.reduce((acc, item) => acc + item.cantidad, 0);
-    return { precioTotal: totalPrecio, cantidadTotal: totalCantidad };
-  }, [carrito]);
+ //  AGREGAR ESTE NUEVO MOTOR DE CÁLCULO:
+const { precioTotal, cantidadTotal, detalleDescuentos } = useMemo(() => {
+  let totalPrecio = 0;
+  let totalCantidad = 0;
+  let descuentosAplicados = [];
 
-  return (
-    <CarritoContext.Provider
-      value={{
-        carrito,
-        agregarProducto,
-        eliminarProducto,
-        vaciarCarrito,
-        precioTotal,
-        cantidadTotal,
-        verCarrito,
-        setVerCarrito,
-      }}
-    >
-      {children}
-    </CarritoContext.Provider>
-  );
+  carrito.forEach((item) => {
+    totalCantidad += item.cantidad;
+    
+    let precioUnitarioFinal = item.precio;
+    let tieneDescuento = false;
+    let promoDescripcion = "";
+
+    // Buscamos si este producto tiene una regla asignada en ofertas.json
+    const regla = OFERTAS_CONFIG.find(o => o.productoIds.includes(item.id));
+
+    if (regla) {
+      if (regla.tipo === 'por_cantidad' && item.cantidad >= regla.cantidadMinima) {
+        const descuentoUnidad = (item.precio * regla.descuentoPorcentaje) / 100;
+        precioUnitarioFinal = item.precio - descuentoUnidad;
+        tieneDescuento = true;
+        promoDescripcion = regla.descripcion;
+      }
+    }
+
+    // Calculamos el subtotal de este producto aplicando o no el descuento
+    const subtotalItem = precioUnitarioFinal * item.cantidad;
+    totalPrecio += subtotalItem;
+
+    // Si aplicó oferta, guardamos el registro del ahorro para informar al usuario y proveedor
+    if (tieneDescuento) {
+      const ahorroTotalItem = (item.precio - precioUnitarioFinal) * item.cantidad;
+      descuentosAplicados.push({
+        productoId: item.id,
+        nombre: item.nombre,
+        ahorro: ahorroTotalItem,
+        descripcion: promoDescripcion
+      });
+    }
+  });
+
+  return { 
+    precioTotal: totalPrecio, 
+    cantidadTotal: totalCantidad, 
+    detalleDescuentos: descuentosAplicados 
+  };
+}, [carrito]);
+
+ return (
+  <CarritoContext.Provider
+    value={{
+      carrito,
+      agregarProducto,
+      eliminarProducto,
+      vaciarCarrito,
+      precioTotal,
+      cantidadTotal,
+      detalleDescuentos, // 🌟 Pasamos los detalles de las ofertas activas
+      verCarrito,
+      setVerCarrito,
+    }}
+  >
+    {children}
+  </CarritoContext.Provider>
+);
 }
 
 // 3. Hook personalizado para consumir el contexto de forma segura y directa

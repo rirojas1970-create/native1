@@ -5,7 +5,7 @@ export const getAppStyles = (insets) => StyleSheet.create({
   appContainer: { 
     flex: 1, 
     backgroundColor: '#f5f5f5', 
-    paddingTop: 40,
+    paddingTop: insets.top, // 🌟 SOLUCIÓN: Ajuste automático para el notch de cualquier celular
     height: '100%', 
     width: '100%', 
   },
@@ -26,7 +26,7 @@ export const getAppStyles = (insets) => StyleSheet.create({
   },
   lista: { 
     padding: 15, 
-    paddingBottom: 100 + insets.bottom // 🌟 Protege el final de la lista
+    paddingBottom: 20 // Reducido porque el contenedor de la barra fija inferior ya no se superpone de manera absoluta
   },
   card: { 
     backgroundColor: '#fff', 
@@ -88,7 +88,7 @@ export const getAppStyles = (insets) => StyleSheet.create({
     alignItems: 'center', 
     paddingHorizontal: 20, 
     paddingTop: 15,
-    paddingBottom: 15 + insets.bottom // 🌟 Evita que se superponga con los botones del celular
+    paddingBottom: 15 + insets.bottom 
   },
   textoBarra: { 
     color: '#fff', 
@@ -161,7 +161,7 @@ export const getAppStyles = (insets) => StyleSheet.create({
     backgroundColor: '#fff', 
     paddingTop: 20,
     paddingHorizontal: 20,
-    paddingBottom: 20 + insets.bottom, // 🌟 Evita la superposición en el carrito
+    paddingBottom: 20 + insets.bottom, 
     borderTopWidth: 1, 
     borderTopColor: '#e0e0e0' 
   },
@@ -188,5 +188,98 @@ export const getAppStyles = (insets) => StyleSheet.create({
     fontSize: 16, 
     color: '#999', 
     marginTop: 40 
-  }
+  },
+  
+  // ========================================================
+  // 🌟 SECCIÓN ADICIONADA: NUEVOS ESTILOS INTEGRADOS ABAJO
+  // ========================================================
+  badgeOferta: {
+    backgroundColor: '#e8f5e9', 
+    alignSelf: 'flex-start',
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 4,
+    marginTop: 4,
+    marginBottom: 2,
+    borderWidth: 1,
+    borderColor: '#81c784' 
+  },
+  textoBadge: {
+    color: '#2e7d32', 
+    fontSize: 11,
+    fontWeight: 'bold',
+  },
+  topNavbar: {
+    flexDirection: 'row',
+    height: 48,
+    backgroundColor: '#ffffff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e0e0e0',
+  },
+  topTab: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  activeTopTab: {
+    borderBottomWidth: 3,
+    borderBottomColor: '#1976d2', // Cambiado a tu azul principal para consistencia
+  },
+  topTabText: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#666',
+    letterSpacing: 0.5,
+  },
+  activeTopTabText: {
+    color: '#1976d2', // Cambiado a tu azul principal
+  },
+  cardOfertaEspecial: {
+    backgroundColor: '#f4f8fc', // 🌟 Contraste suave: Celeste pastel muy refinado
+    borderColor: '#d0e3f5',
+    borderWidth: 1,
+  },
+  tagOfertaContraste: {
+    backgroundColor: '#e53935', 
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 4,
+    alignSelf: 'flex-start',
+  },
+  textoTagOferta: {
+    color: '#ffffff',
+    fontSize: 11,
+    fontWeight: 'bold',
+    letterSpacing: 0.5,
+  },
+  precioOferta: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#e53935',
+    marginBottom: 6,
+  },
+  botonAgregarOferta: {
+    backgroundColor: '#e53935',
+    paddingVertical: 10,
+    borderRadius: 6,
+    alignItems: 'center',
+  },
+  barraFijaInferior: {
+    backgroundColor: '#1976d2', // 🌟 Cambiado al mismo azul de tu header para mantener la identidad de tu app
+    paddingVertical: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: -2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  textoBarraInferior: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 });
