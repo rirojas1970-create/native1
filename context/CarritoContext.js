@@ -1,5 +1,7 @@
-import React, { createContext, useState, useContext, useMemo } from 'react';
+import React, { createContext, useState, useContext, useMemo, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import OFERTAS_CONFIG from '../data/ofertas.json';
+
 // 1. Inicializamos el contexto del carrito
 const CarritoContext = createContext();
 
@@ -7,6 +9,23 @@ const CarritoContext = createContext();
 export function CarritoProvider({ children }) {
   const [carrito, setCarrito] = useState([]);
   const [verCarrito, setVerCarrito] = useState(false); // Manejo de navegación simple/ligera
+  const [historial, setHistorial] = useState([]); // 🌟 Estado global para almacenar las compras pasadas
+
+  // Carga el historial del teléfono de manera asíncrona apenas se inicia la app
+  useEffect(() => {
+    const cargarHistorialLocal = async () => {
+      try {
+        const historialGuardado = await AsyncStorage.getItem('@historial_pedidos');
+        if (historialGuardado !== null) {
+          setHistorial(JSON.parse(historialGuardado));
+        }
+      } catch (e) {
+        console.error("Error al cargar el historial desde AsyncStorage:", e);
+      }
+    };
+
+    cargarHistorialLocal();
+  }, []);
 
   // Agrega un producto o incrementa su cantidad si ya existe
   const agregarProducto = (producto) => {
@@ -39,71 +58,110 @@ export function CarritoProvider({ children }) {
   // Limpia el estado tras finalizar la orden de compra
   const vaciarCarrito = () => setCarrito([]);
 
- //  AGREGAR ESTE NUEVO MOTOR DE CÁLCULO:
-const { precioTotal, cantidadTotal, detalleDescuentos } = useMemo(() => {
-  let totalPrecio = 0;
-  let totalCantidad = 0;
-  let descuentosAplicados = [];
+  // Motor de cálculo memorizado para rendimiento óptimo
+  const { precioTotal, cantidadTotal, detalleDescuentos } = useMemo(() => {
+    let totalPrecio = 0;
+    let totalCantidad = 0;
+    let descuentosAplicados = [];
 
-  carrito.forEach((item) => {
-    totalCantidad += item.cantidad;
-    
-    let precioUnitarioFinal = item.precio;
-    let tieneDescuento = false;
-    let promoDescripcion = "";
+    carrito.forEach((item) => {
+      totalCantidad += item.cantidad;
+      
+      let precioUnitarioFinal = item.precio;
+      let tieneDescuento = false;
+      let promoDescripcion = "";
 
-    // Buscamos si este producto tiene una regla asignada en ofertas.json
-    const regla = OFERTAS_CONFIG.find(o => o.productoIds.includes(item.id));
+      // Buscamos si este producto tiene una regla asignada en ofertas.json
+      const regla = OFERTAS_CONFIG.find(o => o.productoIds.includes(item.id));
 
-    if (regla) {
-      if (regla.tipo === 'por_cantidad' && item.cantidad >= regla.cantidadMinima) {
-        const descuentoUnidad = (item.precio * regla.descuentoPorcentaje) / 100;
-        precioUnitarioFinal = item.precio - descuentoUnidad;
-        tieneDescuento = true;
-        promoDescripcion = regla.descripcion;
+      if (regla) {
+        if (regla.tipo === 'por_cantidad' && item.cantidad >= regla.cantidadMinima) {
+          const descuentoUnidad = (item.precio * regla.descuentoPorcentaje) / 100;
+          precioUnitarioFinal = item.precio - descuentoUnidad;
+          tieneDescuento = true;
+          promoDescripcion = regla.descripcion;
+        }
       }
-    }
 
-    // Calculamos el subtotal de este producto aplicando o no el descuento
-    const subtotalItem = precioUnitarioFinal * item.cantidad;
-    totalPrecio += subtotalItem;
+      // Calculamos el subtotal de este producto aplicando o no el descuento
+      const subtotalItem = precioUnitarioFinal * item.cantidad;
+      totalPrecio += subtotalItem;
 
-    // Si aplicó oferta, guardamos el registro del ahorro para informar al usuario y proveedor
-    if (tieneDescuento) {
-      const ahorroTotalItem = (item.precio - precioUnitarioFinal) * item.cantidad;
-      descuentosAplicados.push({
-        productoId: item.id,
-        nombre: item.nombre,
-        ahorro: ahorroTotalItem,
-        descripcion: promoDescripcion
+      // Si aplicó oferta, guardamos el registro del ahorro para informar al usuario y proveedor
+      if (tieneDescuento) {
+        const ahorroTotalItem = (item.precio - precioUnitarioFinal) * item.cantidad;
+        descuentosAplicados.push({
+          productoId: item.id,
+          nombre: item.nombre,
+          ahorro: ahorroTotalItem,
+          descripcion: promoDescripcion
+        });
+      }
+    });
+
+    return { 
+      precioTotal: totalPrecio, 
+      cantidadTotal: totalCantidad, 
+      detalleDescuentos: descuentosAplicados 
+    };
+  }, [carrito]);
+
+  // 🌟 NUEVA FUNCIÓN: Almacena la compra actual con fecha, hora, items y total neto
+  const registrarCompraEnHistorial = async () => {
+    if (carrito.length === 0) return;
+
+    try {
+      const ahora = new Date();
+      // Formateamos la fecha a formato local argentino DD/MM/AAAA, HH:MM
+      const fechaFormateada = ahora.toLocaleDateString('es-AR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
       });
+
+      // Estructuramos el elemento del historial con datos atómicos y desacoplados
+      const nuevoPedido = {
+        id: ahora.getTime().toString(), // ID único basado en timestamp
+        fecha: fechaFormateada,
+        items: carrito.map(item => ({
+          nombre: item.nombre,
+          cantidad: item.cantidad,
+          precio: item.precio
+        })),
+        total: precioTotal
+      };
+
+      const nuevoHistorial = [nuevoPedido, ...historial]; // Colocamos el pedido más reciente al inicio de la lista
+      setHistorial(nuevoHistorial);
+
+      // Persistencia física en el almacenamiento del dispositivo celular
+      await AsyncStorage.setItem('@historial_pedidos', JSON.stringify(nuevoHistorial));
+    } catch (e) {
+      console.error("Error al persistir la compra en el historial local:", e);
     }
-  });
-
-  return { 
-    precioTotal: totalPrecio, 
-    cantidadTotal: totalCantidad, 
-    detalleDescuentos: descuentosAplicados 
   };
-}, [carrito]);
 
- return (
-  <CarritoContext.Provider
-    value={{
-      carrito,
-      agregarProducto,
-      eliminarProducto,
-      vaciarCarrito,
-      precioTotal,
-      cantidadTotal,
-      detalleDescuentos, // 🌟 Pasamos los detalles de las ofertas activas
-      verCarrito,
-      setVerCarrito,
-    }}
-  >
-    {children}
-  </CarritoContext.Provider>
-);
+  return (
+    <CarritoContext.Provider
+      value={{
+        carrito,
+        agregarProducto,
+        eliminarProducto,
+        vaciarCarrito,
+        precioTotal,
+        cantidadTotal,
+        detalleDescuentos,
+        verCarrito,
+        setVerCarrito,
+        historial,                  // 🌟 Expuesto de forma limpia para que lo consuma la UI de Mis Compras
+        registrarCompraEnHistorial // 🌟 Expuesto para ser gatillado en la confirmación por WhatsApp
+      }}
+    >
+      {children}
+    </CarritoContext.Provider>
+  );
 }
 
 // 3. Hook personalizado para consumir el contexto de forma segura y directa

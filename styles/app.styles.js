@@ -282,4 +282,43 @@ export const getAppStyles = (insets) => StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+
+  // ========================================================
+  // 📝 REGISTRO DE ESTILOS DEL HISTORIAL DE COMPRAS (DENTRO DEL DISPOSITIVO)
+  // ========================================================
+  cardHistorial: {
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
+    borderLeftWidth: 4,
+    borderLeftColor: '#4caf50', // Línea verde elegante que marca éxito de pedido
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  headerHistorial: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f0',
+    paddingBottom: 8,
+    marginBottom: 8,
+  },
+  fechaHistorial: {
+    fontSize: 13,
+    color: '#666',
+    fontWeight: '600',
+  },
+  totalHistorial: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#2e7d32',
+  },
+  textoItemHistorial: {
+    fontSize: 14,
+    color: '#444',
+    marginVertical: 2,
+  }
 });

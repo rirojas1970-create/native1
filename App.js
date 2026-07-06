@@ -58,7 +58,7 @@ function Catalogo() {
 }
 
 // ========================================================
-// 2. COMPONENTE: PANTALLA DE OFERTAS / COMBOS (DISEÑO MEJORADO)
+// 2. COMPONENTE: PANTALLA DE OFERTAS / COMBOS
 // ========================================================
 function Ofertas() {
   const { agregarProducto } = useCarrito();
@@ -133,7 +133,8 @@ function Carrito() {
     precioTotal, 
     setVerCarrito, 
     vaciarCarrito, 
-    detalleDescuentos 
+    detalleDescuentos,
+    registrarCompraEnHistorial // Consumimos la nueva función de guardado local
   } = useCarrito();
 
   const insets = useSafeAreaInsets();
@@ -169,6 +170,8 @@ function Carrito() {
     const url = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
     Linking.openURL(url);
     
+    // 🌟 Primero registramos la foto del pedido en la memoria y luego limpiamos la app
+    registrarCompraEnHistorial(); 
     vaciarCarrito();
     setVerCarrito(false);
   };
@@ -234,7 +237,48 @@ function Carrito() {
 }
 
 // ========================================================
-// 4. COMPONENTE INTERNO: CONTROL DE CONTENIDO (NAVEGACIÓN INTERNA)
+// 4. COMPONENTE: PANTALLA DE HISTORIAL DE COMPRAS (NUEVA VISTA)
+// ========================================================
+function HistorialCompras() {
+  const { historial } = useCarrito();
+  const insets = useSafeAreaInsets();
+  const styles = getAppStyles(insets);
+
+  const renderItem = ({ item }) => (
+    <View style={styles.cardHistorial}>
+      <View style={styles.headerHistorial}>
+        <Text style={styles.fechaHistorial}>📅 {item.fecha}</Text>
+        <Text style={styles.totalHistorial}>Total: ${item.total}</Text>
+      </View>
+      {item.items.map((prod, idx) => (
+        <Text key={idx} style={styles.textoItemHistorial}>
+          • {prod.cantidad}x {prod.nombre} (${prod.precio} c/u)
+        </Text>
+      ))}
+    </View>
+  );
+
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={historial}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+        contentContainerStyle={styles.lista}
+        ListEmptyComponent={
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 60 }}>
+            <Text style={{ fontSize: 16, color: '#999', fontWeight: '500', textAlign: 'center', paddingHorizontal: 20 }}>
+              Todavía no realizaste compras. ¡Tus pedidos enviados por WhatsApp se guardarán automáticamente acá!
+            </Text>
+          </View>
+        }
+      />
+    </View>
+  );
+}
+
+// ========================================================
+// 5. COMPONENTE INTERNO: CONTROL DE CONTENIDO (NAVEGACIÓN)
 // ========================================================
 function AppContenido() {
   const { verCarrito, setVerCarrito, cantidadTotal, precioTotal } = useCarrito();
@@ -245,6 +289,7 @@ function AppContenido() {
   const renderVistaActiva = () => {
     if (verCarrito) return <Carrito />;
     if (tabActual === 'ofertas') return <Ofertas />;
+    if (tabActual === 'historial') return <HistorialCompras />;
     return <Catalogo />;
   };
 
@@ -255,7 +300,7 @@ function AppContenido() {
         <Text style={styles.headerTitle}>La Diagonal </Text>
       </View>
 
-      {/* Pestañas de navegación superiores usando el módulo 'styles' centralizado */}
+      {/* Pestañas de navegación superiores con 3 opciones equilibradas */}
       {!verCarrito && (
         <View style={styles.topNavbar}>
           <TouchableOpacity 
@@ -275,6 +320,15 @@ function AppContenido() {
               OFERTAS 🔥
             </Text>
           </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={[styles.topTab, tabActual === 'historial' && styles.activeTopTab]} 
+            onPress={() => setTabActual('historial')}
+          >
+            <Text style={[styles.topTabText, tabActual === 'historial' && styles.activeTopTabText]}>
+              MIS COMPRAS 📝
+            </Text>
+          </TouchableOpacity>
         </View>
       )}
 
@@ -283,7 +337,7 @@ function AppContenido() {
         {renderVistaActiva()}
       </View>
 
-      {/* Barra de acceso rápido al Carrito abajo del todo mapeada con el módulo 'styles' */}
+      {/* Barra de acceso rápido al Carrito abajo del todo */}
       {!verCarrito && cantidadTotal > 0 && (
         <TouchableOpacity 
           style={styles.barraFijaInferior} 
@@ -300,7 +354,7 @@ function AppContenido() {
 }
 
 // ========================================================
-// 5. NÚCLEO DE LA APP (COMPONENTE EXPORTADO)
+// 6. NÚCLEO DE LA APP (COMPONENTE EXPORTADO)
 // ========================================================
 export default function App() {
   return (
