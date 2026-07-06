@@ -9,7 +9,8 @@ const CarritoContext = createContext();
 export function CarritoProvider({ children }) {
   const [carrito, setCarrito] = useState([]);
   const [verCarrito, setVerCarrito] = useState(false); // Manejo de navegación simple/ligera
-  const [historial, setHistorial] = useState([]); // 🌟 Estado global para almacenar las compras pasadas
+  const [historial, setHistorial] = useState([]); // Estado global para almacenar las compras pasadas
+  const [filtroEstadistica, setFiltroEstadistica] = useState('trimestre'); // 🌟 Controla el rango de analíticas ('mes', 'bimestre', 'trimestre', 'semestre')
 
   // Carga el historial del teléfono de manera asíncrona apenas se inicia la app
   useEffect(() => {
@@ -106,13 +107,12 @@ export function CarritoProvider({ children }) {
     };
   }, [carrito]);
 
-  // 🌟 NUEVA FUNCIÓN: Almacena la compra actual con fecha, hora, items y total neto
+  // Almacena la compra actual con fecha, hora, items y total neto
   const registrarCompraEnHistorial = async () => {
     if (carrito.length === 0) return;
 
     try {
       const ahora = new Date();
-      // Formateamos la fecha a formato local argentino DD/MM/AAAA, HH:MM
       const fechaFormateada = ahora.toLocaleDateString('es-AR', {
         day: '2-digit',
         month: '2-digit',
@@ -121,11 +121,11 @@ export function CarritoProvider({ children }) {
         minute: '2-digit'
       });
 
-      // Estructuramos el elemento del historial con datos atómicos y desacoplados
       const nuevoPedido = {
         id: ahora.getTime().toString(), // ID único basado en timestamp
         fecha: fechaFormateada,
         items: carrito.map(item => ({
+          id: item.id, // Importante mantener la trazabilidad por ID para las métricas de consumo
           nombre: item.nombre,
           cantidad: item.cantidad,
           precio: item.precio
@@ -133,10 +133,9 @@ export function CarritoProvider({ children }) {
         total: precioTotal
       };
 
-      const nuevoHistorial = [nuevoPedido, ...historial]; // Colocamos el pedido más reciente al inicio de la lista
+      const nuevoHistorial = [nuevoPedido, ...historial];
       setHistorial(nuevoHistorial);
 
-      // Persistencia física en el almacenamiento del dispositivo celular
       await AsyncStorage.setItem('@historial_pedidos', JSON.stringify(nuevoHistorial));
     } catch (e) {
       console.error("Error al persistir la compra en el historial local:", e);
@@ -155,8 +154,10 @@ export function CarritoProvider({ children }) {
         detalleDescuentos,
         verCarrito,
         setVerCarrito,
-        historial,                  // 🌟 Expuesto de forma limpia para que lo consuma la UI de Mis Compras
-        registrarCompraEnHistorial // 🌟 Expuesto para ser gatillado en la confirmación por WhatsApp
+        historial,
+        registrarCompraEnHistorial,
+        filtroEstadistica,     // 🌟 Expuesto para cambiar los rangos temporales desde la UI
+        setFiltroEstadistica   // 🌟 Mutador expuesto para sincronizar el estado reactivamente
       }}
     >
       {children}
