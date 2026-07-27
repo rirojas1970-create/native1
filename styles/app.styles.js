@@ -1,11 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-// Exportamos una función que genera y retorna los estilos dinámicos
 export const getAppStyles = (insets) => StyleSheet.create({
   appContainer: { 
     flex: 1, 
     backgroundColor: '#f5f5f5', 
-    paddingTop: insets.top, // 🌟 SOLUCIÓN: Ajuste automático para el notch de cualquier celular
+    paddingTop: insets.top, 
     height: '100%', 
     width: '100%', 
   },
@@ -26,7 +25,7 @@ export const getAppStyles = (insets) => StyleSheet.create({
   },
   lista: { 
     padding: 15, 
-    paddingBottom: 20 // Reducido porque el contenedor de la barra fija inferior ya no se superpone de manera absoluta
+    paddingBottom: 20 
   },
   card: { 
     backgroundColor: '#fff', 
@@ -189,10 +188,6 @@ export const getAppStyles = (insets) => StyleSheet.create({
     color: '#999', 
     marginTop: 40 
   },
-  
-  // ========================================================
-  // 🌟 SECCIÓN ADICIONADA: NUEVOS ESTILOS INTEGRADOS ABAJO
-  // ========================================================
   badgeOferta: {
     backgroundColor: '#e8f5e9', 
     alignSelf: 'flex-start',
@@ -223,19 +218,19 @@ export const getAppStyles = (insets) => StyleSheet.create({
   },
   activeTopTab: {
     borderBottomWidth: 3,
-    borderBottomColor: '#1976d2', // Cambiado a tu azul principal para consistencia
+    borderBottomColor: '#1976d2', 
   },
   topTabText: {
-    fontSize: 14,
+    fontSize: 12, // Reducido levemente para que entren perfecto las 4 opciones en cualquier pantalla
     fontWeight: '700',
     color: '#666',
-    letterSpacing: 0.5,
+    letterSpacing: 0.3,
   },
   activeTopTabText: {
-    color: '#1976d2', // Cambiado a tu azul principal
+    color: '#1976d2', 
   },
   cardOfertaEspecial: {
-    backgroundColor: '#f4f8fc', // 🌟 Contraste suave: Celeste pastel muy refinado
+    backgroundColor: '#f4f8fc', 
     borderColor: '#d0e3f5',
     borderWidth: 1,
   },
@@ -265,7 +260,7 @@ export const getAppStyles = (insets) => StyleSheet.create({
     alignItems: 'center',
   },
   barraFijaInferior: {
-    backgroundColor: '#1976d2', // 🌟 Cambiado al mismo azul de tu header para mantener la identidad de tu app
+    backgroundColor: '#1976d2', 
     paddingVertical: 18,
     alignItems: 'center',
     justifyContent: 'center',
@@ -282,17 +277,13 @@ export const getAppStyles = (insets) => StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-
-  // ========================================================
-  // 📝 REGISTRO DE ESTILOS DEL HISTORIAL DE COMPRAS (DENTRO DEL DISPOSITIVO)
-  // ========================================================
   cardHistorial: {
     backgroundColor: '#ffffff',
     borderRadius: 12,
     padding: 16,
     marginBottom: 12,
     borderLeftWidth: 4,
-    borderLeftColor: '#4caf50', // Línea verde elegante que marca éxito de pedido
+    borderLeftColor: '#4caf50', 
     shadowColor: '#000',
     shadowOpacity: 0.05,
     shadowRadius: 3,
@@ -320,5 +311,98 @@ export const getAppStyles = (insets) => StyleSheet.create({
     fontSize: 14,
     color: '#444',
     marginVertical: 2,
-  }
+  },
+
+  // ========================================================
+  // 📈 NUEVOS ESTILOS INTERNOS PARA EL PANEL DE ESTADÍSTICAS
+  // ========================================================
+  contenedorFiltrosEstadistica: {
+    flexDirection: 'row',
+    backgroundColor: '#e0e0e0',
+    borderRadius: 8,
+    padding: 4,
+    marginBottom: 20,
+    justifyContent: 'space-between',
+  },
+  botonFiltroEstadistica: {
+    flex: 1,
+    paddingVertical: 8,
+    alignItems: 'center',
+    borderRadius: 6,
+  },
+  botonFiltroEstadisticaActivo: {
+    backgroundColor: '#1976d2', // Resalta con el azul principal
+  },
+  textoFiltroEstadistica: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#555',
+  },
+  textoFiltroEstadisticaActivo: {
+    color: '#ffffff',
+  },
+  filaKpiEstadistica: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 12,
+  },
+  tarjetaKpiEstadistica: {
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    padding: 16,
+    width: '48%', // Coloca los recuadros en paralelo
+    shadowColor: '#000',
+    shadowOpacity: 0.04,
+    shadowRadius: 3,
+    elevation: 2,
+    alignItems: 'center',
+  },
+  tituloKpiEstadistica: {
+    fontSize: 12,
+    color: '#777',
+    fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: 4,
+  },
+  valorKpiEstadistica: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#2e7d32', // Verde de éxito/dinero
+  },
+  contenedorPodioEstadistica: {
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    padding: 16,
+    shadowColor: '#000',
+    shadowOpacity: 0.04,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  tituloSeccionEstadistica: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#333',
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f0',
+    paddingBottom: 8,
+    marginBottom: 8,
+  },
+  filaItemPodioEstadistica: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#fafafa',
+  },
+  nombreItemPodioEstadistica: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#444',
+  },
+  cantidadItemPodioEstadistica: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#1976d2',
+  },
 });

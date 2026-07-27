@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
-import { useCleanCart } from '../context/CleanCartContext';
+// ✅ REEMPLAZALO POR ESTO:
+import { useCarrito } from '../context/CarritoContext';
 import CleanOfferCard from '../components/CleanOfferCard';
 
 // Importamos directamente tus datos locales de ofertas
