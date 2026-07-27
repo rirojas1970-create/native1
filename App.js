@@ -3,8 +3,12 @@ import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, Linking } fr
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import OFERTAS_CONFIG from './data/ofertas.json';
 import { CarritoProvider, useCarrito } from './context/CarritoContext';
+import { AdminProvider } from './context/AdminContext';
+import AdminDashboardScreen from './screens/AdminDashboardScreen';
 import PRODUCTOS_MOCK from "./data/productos.json";
 import { getAppStyles } from './styles/app.styles';
+
+
 
 // ========================================================
 // 1. COMPONENTE: PANTALLA DE CATÁLOGO (PRODUCTOS)
@@ -134,7 +138,7 @@ function Carrito() {
     setVerCarrito, 
     vaciarCarrito, 
     detalleDescuentos,
-    registrarCompraEnHistorial // Consumimos la nueva función de guardado local
+    registrarCompraEnHistorial 
   } = useCarrito();
 
   const insets = useSafeAreaInsets();
@@ -170,7 +174,6 @@ function Carrito() {
     const url = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
     Linking.openURL(url);
     
-    // 🌟 Primero registramos la foto del pedido en la memoria y luego limpiamos la app
     registrarCompraEnHistorial(); 
     vaciarCarrito();
     setVerCarrito(false);
@@ -237,7 +240,7 @@ function Carrito() {
 }
 
 // ========================================================
-// 4. COMPONENTE: PANTALLA DE HISTORIAL DE COMPRAS (NUEVA VISTA)
+// 4. COMPONENTE: PANTALLA DE HISTORIAL DE COMPRAS
 // ========================================================
 function HistorialCompras() {
   const { historial } = useCarrito();
@@ -278,9 +281,9 @@ function HistorialCompras() {
 }
 
 // ========================================================
-// 5. COMPONENTE INTERNO: CONTROL DE CONTENIDO (NAVEGACIÓN)
+// 5. COMPONENTE INTERNO: CONTROL DE CONTENIDO (CLIENTE)
 // ========================================================
-function AppContenido() {
+function AppContenidoCliente() {
   const { verCarrito, setVerCarrito, cantidadTotal, precioTotal } = useCarrito();
   const [tabActual, setTabActual] = useState('productos'); 
   const insets = useSafeAreaInsets(); 
@@ -295,12 +298,10 @@ function AppContenido() {
 
   return (
     <View style={[styles.appContainer, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
-      {/* Header Principal Fijo */}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>La Diagonal </Text>
       </View>
 
-      {/* Pestañas de navegación superiores con 3 opciones equilibradas */}
       {!verCarrito && (
         <View style={styles.topNavbar}>
           <TouchableOpacity 
@@ -332,12 +333,10 @@ function AppContenido() {
         </View>
       )}
 
-      {/* Contenido principal de la pantalla activa */}
       <View style={{ flex: 1 }}>
         {renderVistaActiva()}
       </View>
 
-      {/* Barra de acceso rápido al Carrito abajo del todo */}
       {!verCarrito && cantidadTotal > 0 && (
         <TouchableOpacity 
           style={styles.barraFijaInferior} 
@@ -353,15 +352,56 @@ function AppContenido() {
   );
 }
 
+
+// ... (Tus componentes Catalogo, Ofertas, Carrito, HistorialCompras y AppContenidoCliente siguen igual arriba)
+
 // ========================================================
-// 6. NÚCLEO DE LA APP (COMPONENTE EXPORTADO)
+// 6. CONTENIDO PRINCIPAL (Navegación + Margen de Barra)
+// ========================================================
+function MainApp() {
+  const [modoAdmin, setModoAdmin] = useState(false);
+  const insets = useSafeAreaInsets(); // Calcula el espacio exacto del notch / status bar
+
+  return (
+    <View style={{ flex: 1, backgroundColor: modoAdmin ? '#0066cc' : '#222' }}>
+      
+      {/* Botón Administrador con Padding Seguro */}
+      <TouchableOpacity 
+        style={{ 
+          paddingTop: Math.max(insets.top, 12), 
+          paddingBottom: 12,
+          paddingHorizontal: 16,
+          backgroundColor: modoAdmin ? '#004c99' : '#333', 
+          alignItems: 'center' 
+        }}
+        onPress={() => setModoAdmin(!modoAdmin)}
+        activeOpacity={0.8}
+      >
+        <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 13 }}>
+          {modoAdmin ? "🔄 Cambiar a VISTA CLIENTE" : "⚙️ Ir a GESTIÓN ADMINISTRADOR"}
+        </Text>
+      </TouchableOpacity>
+
+      {/* Vistas de la aplicación */}
+      <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        {modoAdmin ? <AdminDashboardScreen /> : <AppContenidoCliente />}
+      </View>
+
+    </View>
+  );
+}
+
+// ========================================================
+// 7. EXPORTACIÓN PRINCIPAL (Proveedores de Estado)
 // ========================================================
 export default function App() {
   return (
     <SafeAreaProvider> 
-      <CarritoProvider>
-        <AppContenido />
-      </CarritoProvider>
+      <AdminProvider>
+        <CarritoProvider>
+          <MainApp />
+        </CarritoProvider>
+      </AdminProvider>
     </SafeAreaProvider>
   );
 }
