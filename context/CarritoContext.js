@@ -30,6 +30,8 @@ export function CarritoProvider({ children }) {
 
   // Agrega un producto o incrementa su cantidad si ya existe
   const agregarProducto = (producto) => {
+    console.log("AGREGANDO:", producto);
+
     setCarrito((itemsActuales) => {
       const existe = itemsActuales.find((item) => item.id === producto.id);
       if (existe) {
@@ -99,7 +101,7 @@ export function CarritoProvider({ children }) {
         });
       }
     });
-
+    console.log("CARRITO:", carrito);
     return { 
       precioTotal: totalPrecio, 
       cantidadTotal: totalCantidad, 

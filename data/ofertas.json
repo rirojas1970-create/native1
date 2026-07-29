@@ -1,6 +1,6 @@
 [
   {
-    "id": "combo_desinfectante_mayorista",
+    "id": "combo_desinfectante_mayorista_1",
     "tipo": "por_cantidad",
     "productoIds": ["4"],
     "cantidadMinima": 8,
@@ -10,7 +10,7 @@
   },
   
   {
-    "id": "combo_desinfectante_mayorista",
+    "id": "combo_desinfectante_mayorista_2",
     "tipo": "por_cantidad",
     "productoIds": ["5"],
     "cantidadMinima": 5,
