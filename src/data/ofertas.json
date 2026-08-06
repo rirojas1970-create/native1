@@ -1,0 +1,30 @@
+[
+  {
+    "id": "combo_desinfectante_mayorista_1",
+    "tipo": "por_cantidad",
+    "productoIds": ["4"],
+    "cantidadMinima": 8,
+    "descuentoPorcentaje": 10,
+    "precioCombo": 4500,
+    "descripcion": "lavandina, jabon, trapos de piso"
+  },
+  
+  {
+    "id": "combo_desinfectante_mayorista_2",
+    "tipo": "por_cantidad",
+    "productoIds": ["5"],
+    "cantidadMinima": 5,
+    "descuentoPorcentaje": 10,
+    "precioCombo":5600,
+    "descripcion": "10% OFF 5 unidades"
+  },
+  {
+    "id": "combo_limpieza_profunda",
+    "tipo": "por_cantidad",
+    "productoIds": ["6"], 
+    "cantidadMinima": 7,
+    "descuentoPorcentaje": 15,
+    "precioCombo":7600,
+    "descripcion": "15% OFF 7 unidades"
+  }
+]

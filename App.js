@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+// Contextos Globales
+import { CarritoProvider } from './src/context/CarritoContext';
+import { AdminProvider } from './src/context/AdminContext';
+
+// Módulo de Navegación centralizado
+import AppNavigation from './src/navigation';
+
+/**
+ * App
+ * Punto de entrada principal de la aplicación.
+ * Provee el contexto global e invoca la navegación modularizada.
+ */
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <AdminProvider>
+        <CarritoProvider>
+          <AppNavigation />
+        </CarritoProvider>
+      </AdminProvider>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
