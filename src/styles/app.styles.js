@@ -1,215 +1,59 @@
+// src/styles/getAppStyles.js
 import { StyleSheet } from 'react-native';
+// 📦 Importamos los tokens centralizados para desacoplar valores duros
+import { colors, spacing, typography, borderRadius, shadows } from './theme';
 
 export const getAppStyles = (insets) => StyleSheet.create({
+
+  // ========================================================
+  // 🌐 1. LAYOUT Y CONTENEDORES GLOBALES
+  // ========================================================
   appContainer: { 
     flex: 1, 
-    backgroundColor: '#f5f5f5', 
+    backgroundColor: colors.background, 
     paddingTop: insets.top, 
     height: '100%', 
     width: '100%', 
   },
-  header: { 
-    backgroundColor: '#ffffff', 
-    padding: 15, 
-    borderBottomWidth: 1, 
-    borderBottomColor: '#e0e0e0', 
-    alignItems: 'center' 
-  },
-  headerTitle: { 
-    fontSize: 20, 
-    fontWeight: 'bold', 
-    color: '#1976d2' 
-  },
   container: { 
     flex: 1 
   },
-  lista: { 
-    padding: 15, 
-    paddingBottom: 20 
-  },
-  card: { 
-    backgroundColor: '#fff', 
-    borderRadius: 12, 
-    flexDirection: 'row', 
-    marginBottom: 15, 
-    padding: 12, 
-    shadowColor: '#000', 
-    shadowOpacity: 0.1, 
-    shadowRadius: 4, 
-    elevation: 3 
-  },
-  imagen: { 
-    width: 90, 
-    height: 90, 
-    borderRadius: 8, 
-    backgroundColor: '#e0e0e0' 
-  },
-  infoContainer: { 
-    flex: 1, 
-    marginLeft: 12, 
-    justifyContent: 'space-between' 
-  },
-  nombre: { 
-    fontSize: 16, 
-    fontWeight: 'bold', 
-    color: '#333' 
-  },
-  descripcion: { 
-    fontSize: 12, 
-    color: '#666', 
-    marginVertical: 4 
-  },
-  precio: { 
-    fontSize: 16, 
-    fontWeight: 'bold', 
-    color: '#2e7d32' 
-  },
-  botonAgregar: { 
-    backgroundColor: '#0288d1', 
-    paddingVertical: 6, 
-    borderRadius: 6, 
-    alignItems: 'center', 
-    marginTop: 5 
-  },
-  textoBoton: { 
-    color: '#fff', 
-    fontWeight: '600', 
-    fontSize: 13 
-  },
-  barraFlotante: { 
-    position: 'absolute', 
-    bottom: 0, 
-    left: 0, 
-    right: 0, 
-    backgroundColor: '#1976d2', 
-    flexDirection: 'row', 
-    justifyContent: 'space-between', 
-    alignItems: 'center', 
-    paddingHorizontal: 20, 
-    paddingTop: 15,
-    paddingBottom: 15 + insets.bottom 
-  },
-  textoBarra: { 
-    color: '#fff', 
-    fontSize: 15, 
-    fontWeight: 'bold' 
-  },
-  botonVerCarrito: { 
-    backgroundColor: '#fff', 
-    paddingHorizontal: 12, 
-    paddingVertical: 6, 
-    borderRadius: 8 
-  },
-  textoBotonVer: { 
-    color: '#1976d2', 
-    fontWeight: 'bold', 
-    fontSize: 13 
-  },
-  botonVolver: { 
-    padding: 15 
-  },
-  textoVolver: { 
-    color: '#0288d1', 
-    fontWeight: 'bold', 
-    fontSize: 15 
-  },
-  cardCarrito: { 
-    backgroundColor: '#fff', 
-    padding: 15, 
-    borderRadius: 10, 
-    flexDirection: 'row', 
-    alignItems: 'center', 
-    marginBottom: 10, 
-    borderLeftWidth: 4, 
-    borderLeftColor: '#0288d1' 
-  },
-  controlesCantidad: { 
-    flexDirection: 'row', 
-    alignItems: 'center', 
-    backgroundColor: '#f0f0f0', 
-    borderRadius: 20, 
-    padding: 4 
-  },
-  botonMenos: { 
-    backgroundColor: '#e57373', 
-    width: 30, height: 30, 
-    borderRadius: 15, 
-    justifyContent: 'center', 
+  header: { 
+    backgroundColor: colors.surface, 
+    padding: spacing.lg, 
+    borderBottomWidth: 1, 
+    borderBottomColor: colors.border, 
     alignItems: 'center' 
   },
-  botonMas: { 
-    backgroundColor: '#81c784', 
-    width: 30, height: 30, 
-    borderRadius: 15, 
-    justifyContent: 'center', 
-    alignItems: 'center' 
-  },
-  textoControl: { 
-    color: '#fff', 
-    fontSize: 18, 
-    fontWeight: 'bold' 
-  },
-  cantidadNumero: { 
-    marginHorizontal: 12, 
-    fontSize: 16, 
-    fontWeight: 'bold' 
-  },
-  contenedorTotal: { 
-    position: 'absolute', 
-    bottom: 0, left: 0, right: 0, 
-    backgroundColor: '#fff', 
-    paddingTop: 20,
-    paddingHorizontal: 20,
-    paddingBottom: 20 + insets.bottom, 
-    borderTopWidth: 1, 
-    borderTopColor: '#e0e0e0' 
-  },
-  totalTexto: { 
-    fontSize: 18, 
-    fontWeight: 'bold', 
-    textAlign: 'center', 
-    marginBottom: 10, 
-    color: '#333' 
-  },
-  botonWhatsApp: { 
-    backgroundColor: '#25D366', 
-    padding: 12, 
-    borderRadius: 8, 
-    alignItems: 'center' 
-  },
-  textoBotonWA: { 
-    color: '#fff', 
-    fontSize: 16, 
-    fontWeight: 'bold' 
+  headerTitle: { 
+    fontSize: typography.fontSize.header, 
+    fontWeight: typography.fontWeight.bold, 
+    color: colors.primary 
   },
   textoVacio: { 
     textAlign: 'center', 
-    fontSize: 16, 
-    color: '#999', 
+    fontSize: typography.fontSize.title, 
+    color: colors.textMuted, 
     marginTop: 40 
   },
-  badgeOferta: {
-    backgroundColor: '#e8f5e9', 
-    alignSelf: 'flex-start',
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-    borderRadius: 4,
-    marginTop: 4,
-    marginBottom: 2,
-    borderWidth: 1,
-    borderColor: '#81c784' 
+  botonVolver: { 
+    padding: spacing.lg 
   },
-  textoBadge: {
-    color: '#2e7d32', 
-    fontSize: 11,
-    fontWeight: 'bold',
+  textoVolver: { 
+    color: colors.primaryDark, 
+    fontWeight: typography.fontWeight.bold, 
+    fontSize: typography.fontSize.subheading 
   },
+
+  // ========================================================
+  // 🧭 2. NAVEGACIÓN (TOP NAVBAR & BOTTOM BAR)
+  // ========================================================
   topNavbar: {
     flexDirection: 'row',
     height: 48,
-    backgroundColor: '#ffffff',
+    backgroundColor: colors.surface,
     borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
+    borderBottomColor: colors.border,
   },
   topTab: {
     flex: 1,
@@ -218,191 +62,358 @@ export const getAppStyles = (insets) => StyleSheet.create({
   },
   activeTopTab: {
     borderBottomWidth: 3,
-    borderBottomColor: '#1976d2', 
+    borderBottomColor: colors.primary, 
   },
   topTabText: {
-    fontSize: 12, // Reducido levemente para que entren perfecto las 4 opciones en cualquier pantalla
-    fontWeight: '700',
-    color: '#666',
-    letterSpacing: 0.3,
+    fontSize: typography.fontSize.caption,
+    fontWeight: typography.fontWeight.bold,
+    color: colors.textSecondary,
+    letterSpacing: typography.letterSpacing.tight,
   },
   activeTopTabText: {
-    color: '#1976d2', 
+    color: colors.primary, 
   },
-  cardOfertaEspecial: {
-    backgroundColor: '#f4f8fc', 
-    borderColor: '#d0e3f5',
-    borderWidth: 1,
+  barraFlotante: { 
+    position: 'absolute', 
+    bottom: 0, 
+    left: 0, 
+    right: 0, 
+    backgroundColor: colors.primary, 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
+    paddingHorizontal: spacing.xxl, 
+    paddingTop: spacing.lg,
+    paddingBottom: spacing.lg + insets.bottom 
   },
-  tagOfertaContraste: {
-    backgroundColor: '#e53935', 
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 4,
-    alignSelf: 'flex-start',
+  textoBarra: { 
+    color: colors.textLight, 
+    fontSize: typography.fontSize.subheading, 
+    fontWeight: typography.fontWeight.bold 
   },
-  textoTagOferta: {
-    color: '#ffffff',
-    fontSize: 11,
-    fontWeight: 'bold',
-    letterSpacing: 0.5,
+  botonVerCarrito: { 
+    backgroundColor: colors.surface, 
+    paddingHorizontal: spacing.md, 
+    paddingVertical: spacing.xs + 2, 
+    borderRadius: borderRadius.md 
   },
-  precioOferta: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#e53935',
-    marginBottom: 6,
-  },
-  botonAgregarOferta: {
-    backgroundColor: '#e53935',
-    paddingVertical: 10,
-    borderRadius: 6,
-    alignItems: 'center',
+  textoBotonVer: { 
+    color: colors.primary, 
+    fontWeight: typography.fontWeight.bold, 
+    fontSize: typography.fontSize.small 
   },
   barraFijaInferior: {
-    backgroundColor: '#1976d2', 
+    backgroundColor: colors.primary, 
     paddingVertical: 18,
     alignItems: 'center',
     justifyContent: 'center',
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 5,
+    borderTopLeftRadius: borderRadius.xl,
+    borderTopRightRadius: borderRadius.xl,
+    ...shadows.topBar, // Aplicación de sombra reutilizable
   },
   textoBarraInferior: {
-    color: '#ffffff',
-    fontSize: 16,
-    fontWeight: 'bold',
+    color: colors.textLight,
+    fontSize: typography.fontSize.title,
+    fontWeight: typography.fontWeight.bold,
   },
+
+  // ========================================================
+  // 🛍️ 3. PANTALLA DE PRODUCTOS & TARJETAS
+  // ========================================================
+  lista: { 
+    padding: spacing.lg, 
+    paddingBottom: spacing.xxl 
+  },
+  card: { 
+    backgroundColor: colors.surface, 
+    borderRadius: borderRadius.xl, 
+    flexDirection: 'row', 
+    marginBottom: spacing.lg, 
+    padding: spacing.md, 
+    ...shadows.medium,
+  },
+  imagen: { 
+    width: 90, 
+    height: 90, 
+    borderRadius: borderRadius.md, 
+    backgroundColor: colors.border 
+  },
+  infoContainer: { 
+    flex: 1, 
+    marginLeft: spacing.md, 
+    justifyContent: 'space-between' 
+  },
+  nombre: { 
+    fontSize: typography.fontSize.title, 
+    fontWeight: typography.fontWeight.bold, 
+    color: colors.textPrimary 
+  },
+  descripcion: { 
+    fontSize: typography.fontSize.caption, 
+    color: colors.textSecondary, 
+    marginVertical: spacing.xs 
+  },
+  precio: { 
+    fontSize: typography.fontSize.title, 
+    fontWeight: typography.fontWeight.bold, 
+    color: colors.secondary 
+  },
+  botonAgregar: { 
+    backgroundColor: colors.primaryDark, 
+    paddingVertical: spacing.xs + 2, 
+    borderRadius: borderRadius.sm, 
+    alignItems: 'center', 
+    marginTop: 5 
+  },
+  textoBoton: { 
+    color: colors.textLight, 
+    fontWeight: typography.fontWeight.medium, 
+    fontSize: typography.fontSize.small 
+  },
+  badgeOferta: {
+    backgroundColor: colors.badgeBackground, 
+    alignSelf: 'flex-start',
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 2,
+    borderRadius: borderRadius.xs,
+    marginTop: spacing.xs,
+    marginBottom: 2,
+    borderWidth: 1,
+    borderColor: colors.secondaryLight 
+  },
+  textoBadge: {
+    color: colors.secondary, 
+    fontSize: typography.fontSize.badge,
+    fontWeight: typography.fontWeight.bold,
+  },
+
+  // ========================================================
+  // 🔥 4. PANTALLA / SECCIÓN DE OFERTAS ESPECIALES
+  // ========================================================
+  cardOfertaEspecial: {
+    backgroundColor: colors.surfaceAlt, 
+    borderColor: colors.borderOffer,
+    borderWidth: 1,
+  },
+  tagOfertaContraste: {
+    backgroundColor: colors.danger, 
+    paddingHorizontal: spacing.md - 2,
+    paddingVertical: spacing.xs,
+    borderRadius: borderRadius.xs,
+    alignSelf: 'flex-start',
+  },
+  textoTagOferta: {
+    color: colors.textLight,
+    fontSize: typography.fontSize.badge,
+    fontWeight: typography.fontWeight.bold,
+    letterSpacing: typography.letterSpacing.wide,
+  },
+  precioOferta: {
+    fontSize: typography.fontSize.kpi,
+    fontWeight: typography.fontWeight.bold,
+    color: colors.danger,
+    marginBottom: spacing.xs + 2,
+  },
+  botonAgregarOferta: {
+    backgroundColor: colors.danger,
+    paddingVertical: spacing.sm + 2,
+    borderRadius: borderRadius.sm,
+    alignItems: 'center',
+  },
+
+  // ========================================================
+  // 🛒 5. PANTALLA DE CARRITO DE COMPRAS
+  // ========================================================
+  cardCarrito: { 
+    backgroundColor: colors.surface, 
+    padding: spacing.lg, 
+    borderRadius: borderRadius.lg, 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    marginBottom: spacing.sm + 2, 
+    borderLeftWidth: 4, 
+    borderLeftColor: colors.primaryDark 
+  },
+  controlesCantidad: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    backgroundColor: '#f0f0f0', 
+    borderRadius: borderRadius.pill, 
+    padding: spacing.xs 
+  },
+  botonMenos: { 
+    backgroundColor: colors.dangerLight, 
+    width: 30, height: 30, 
+    borderRadius: 15, 
+    justifyContent: 'center', 
+    alignItems: 'center' 
+  },
+  botonMas: { 
+    backgroundColor: colors.secondaryLight, 
+    width: 30, height: 30, 
+    borderRadius: 15, 
+    justifyContent: 'center', 
+    alignItems: 'center' 
+  },
+  textoControl: { 
+    color: colors.textLight, 
+    fontSize: typography.fontSize.kpi, 
+    fontWeight: typography.fontWeight.bold 
+  },
+  cantidadNumero: { 
+    marginHorizontal: spacing.md, 
+    fontSize: typography.fontSize.title, 
+    fontWeight: typography.fontWeight.bold 
+  },
+  contenedorTotal: { 
+    position: 'absolute', 
+    bottom: 0, left: 0, right: 0, 
+    backgroundColor: colors.surface, 
+    paddingTop: spacing.xxl,
+    paddingHorizontal: spacing.xxl,
+    paddingBottom: spacing.xxl + insets.bottom, 
+    borderTopWidth: 1, 
+    borderTopColor: colors.border 
+  },
+  totalTexto: { 
+    fontSize: typography.fontSize.kpi, 
+    fontWeight: typography.fontWeight.bold, 
+    textAlign: 'center', 
+    marginBottom: spacing.sm + 2, 
+    color: colors.textPrimary 
+  },
+  botonWhatsApp: { 
+    backgroundColor: colors.whatsapp, 
+    padding: spacing.md, 
+    borderRadius: borderRadius.md, 
+    alignItems: 'center' 
+  },
+  textoBotonWA: { 
+    color: colors.textLight, 
+    fontSize: typography.fontSize.title, 
+    fontWeight: typography.fontWeight.bold 
+  },
+
+  // ========================================================
+  // 📜 6. PANTALLA DE HISTORIAL DE PEDIDOS
+  // ========================================================
   cardHistorial: {
-    backgroundColor: '#ffffff',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 12,
+    backgroundColor: colors.surface,
+    borderRadius: borderRadius.xl,
+    padding: spacing.xl,
+    marginBottom: spacing.md,
     borderLeftWidth: 4,
     borderLeftColor: '#4caf50', 
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 3,
-    elevation: 2,
+    ...shadows.light,
   },
   headerHistorial: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-    paddingBottom: 8,
-    marginBottom: 8,
+    borderBottomColor: colors.borderLight,
+    paddingBottom: spacing.sm,
+    marginBottom: spacing.sm,
   },
   fechaHistorial: {
-    fontSize: 13,
-    color: '#666',
-    fontWeight: '600',
+    fontSize: typography.fontSize.small,
+    color: colors.textSecondary,
+    fontWeight: typography.fontWeight.medium,
   },
   totalHistorial: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: '#2e7d32',
+    fontSize: typography.fontSize.subheading,
+    fontWeight: typography.fontWeight.bold,
+    color: colors.secondary,
   },
   textoItemHistorial: {
-    fontSize: 14,
-    color: '#444',
+    fontSize: typography.fontSize.body,
+    color: colors.textDarkAlt,
     marginVertical: 2,
   },
 
   // ========================================================
-  // 📈 NUEVOS ESTILOS INTERNOS PARA EL PANEL DE ESTADÍSTICAS
+  // 📈 7. PANTALLA / PANEL DE ESTADÍSTICAS
   // ========================================================
   contenedorFiltrosEstadistica: {
     flexDirection: 'row',
-    backgroundColor: '#e0e0e0',
-    borderRadius: 8,
-    padding: 4,
-    marginBottom: 20,
+    backgroundColor: colors.surfaceFilter,
+    borderRadius: borderRadius.md,
+    padding: spacing.xs,
+    marginBottom: spacing.xxl,
     justifyContent: 'space-between',
   },
   botonFiltroEstadistica: {
     flex: 1,
-    paddingVertical: 8,
+    paddingVertical: spacing.sm,
     alignItems: 'center',
-    borderRadius: 6,
+    borderRadius: borderRadius.sm,
   },
   botonFiltroEstadisticaActivo: {
-    backgroundColor: '#1976d2', // Resalta con el azul principal
+    backgroundColor: colors.primary,
   },
   textoFiltroEstadistica: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: '#555',
+    fontSize: typography.fontSize.small,
+    fontWeight: typography.fontWeight.medium,
+    color: colors.textFilter,
   },
   textoFiltroEstadisticaActivo: {
-    color: '#ffffff',
+    color: colors.textLight,
   },
   filaKpiEstadistica: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 12,
+    marginBottom: spacing.md,
   },
   tarjetaKpiEstadistica: {
-    backgroundColor: '#ffffff',
-    borderRadius: 12,
-    padding: 16,
-    width: '48%', // Coloca los recuadros en paralelo
-    shadowColor: '#000',
-    shadowOpacity: 0.04,
-    shadowRadius: 3,
-    elevation: 2,
+    backgroundColor: colors.surface,
+    borderRadius: borderRadius.xl,
+    padding: spacing.xl,
+    width: '48%',
+    ...shadows.light,
     alignItems: 'center',
   },
   tituloKpiEstadistica: {
-    fontSize: 12,
-    color: '#777',
-    fontWeight: '600',
+    fontSize: typography.fontSize.caption,
+    color: colors.textSubtle,
+    fontWeight: typography.fontWeight.medium,
     textAlign: 'center',
-    marginBottom: 4,
+    marginBottom: spacing.xs,
   },
   valorKpiEstadistica: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#2e7d32', // Verde de éxito/dinero
+    fontSize: typography.fontSize.header,
+    fontWeight: typography.fontWeight.bold,
+    color: colors.secondary,
   },
   contenedorPodioEstadistica: {
-    backgroundColor: '#ffffff',
-    borderRadius: 12,
-    padding: 16,
-    shadowColor: '#000',
-    shadowOpacity: 0.04,
-    shadowRadius: 3,
-    elevation: 2,
+    backgroundColor: colors.surface,
+    borderRadius: borderRadius.xl,
+    padding: spacing.xl,
+    ...shadows.light,
   },
   tituloSeccionEstadistica: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: '#333',
+    fontSize: typography.fontSize.subheading,
+    fontWeight: typography.fontWeight.bold,
+    color: colors.textPrimary,
     borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-    paddingBottom: 8,
-    marginBottom: 8,
+    borderBottomColor: colors.borderLight,
+    paddingBottom: spacing.sm,
+    marginBottom: spacing.sm,
   },
   filaItemPodioEstadistica: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: spacing.sm + 2,
     borderBottomWidth: 1,
-    borderBottomColor: '#fafafa',
+    borderBottomColor: colors.borderAlt,
   },
   nombreItemPodioEstadistica: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#444',
+    fontSize: typography.fontSize.body,
+    fontWeight: typography.fontWeight.medium,
+    color: colors.textDarkAlt,
   },
   cantidadItemPodioEstadistica: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: '#1976d2',
-  },
+    fontSize: typography.fontSize.body,
+    fontWeight: typography.fontWeight.bold,
+    color: colors.primary,
+  },    
 });

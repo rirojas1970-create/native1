@@ -1,23 +1,562 @@
 [
   {
     "id": "1",
-    "nombre": "Detergente Premium",
+    "nombre": "Detergente Premium Limón",
     "descripcion": "Rinde el doble, remueve grasa difícil y cuida tus manos.",
     "precio": 2500,
+    "categoria": "Vajilla",
     "imagen": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=500&auto=format&fit=crop&q=60"
   },
   {
     "id": "2",
-    "nombre": "Desinfectante Lavanda",
+    "nombre": "Desinfectante Lavanda 1L",
     "descripcion": "Elimina el 99.9% de bacterias con un aroma floral duradero.",
     "precio": 1800,
+    "categoria": "Superficies",
     "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
   },
   {
     "id": "3",
-    "nombre": "Limpiavidrios Pro",
+    "nombre": "Limpiavidrios Pro Espejos",
     "descripcion": "Brillo transparente sin dejar vetas ni marcas de agua.",
     "precio": 2100,
+    "categoria": "Vidrios",
     "imagen": "https://images.unsplash.com/photo-1622114631326-7bc28c0a87a2?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "4",
+    "nombre": "Lavandina Concentrada 2L",
+    "descripcion": "Máxima desinfección para pisos, baños y agua de tanque.",
+    "precio": 1900,
+    "categoria": "Desinfectantes",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "5",
+    "nombre": "Jabón Líquido Para Ropa Manta",
+    "descripcion": "Protección profunda de fibras y perfume de larga duración.",
+    "precio": 4500,
+    "categoria": "Ropa",
+    "imagen": "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "6",
+    "nombre": "Suavizante para Ropa Primavera",
+    "descripcion": "Acondiciona las telas dejando una suavidad única.",
+    "precio": 3200,
+    "categoria": "Ropa",
+    "imagen": "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "7",
+    "nombre": "Limpiador Antigrasa Cocina",
+    "descripcion": "Acción rápida contra la grasa pesada en hornos y campanas.",
+    "precio": 2800,
+    "categoria": "Cocina",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "8",
+    "nombre": "Desinfectante Pino Silvestre",
+    "descripcion": "Aroma a pino natural ideal para patios y áreas exteriores.",
+    "precio": 2200,
+    "categoria": "Superficies",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "9",
+    "nombre": "Limpiador de Baño Antisarro",
+    "descripcion": "Remueve sarro, residuos de jabón y devuelve el brillo al azulejo.",
+    "precio": 2900,
+    "categoria": "Baño",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "10",
+    "nombre": "Esponja Multiuso Antirrayas 3U",
+    "descripcion": "Pack x3 esponjas con fibra verde reforzada de alta duración.",
+    "precio": 1200,
+    "categoria": "Accesorios",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "11",
+    "nombre": "Paño Microfibra Multiuso 4U",
+    "descripcion": "Ultra absorbentes, no dejan pelusa en vidrio ni acero.",
+    "precio": 2300,
+    "categoria": "Accesorios",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "12",
+    "nombre": "Lustramuebles Aerosol Cera",
+    "descripcion": "Protege madera con una capa protectora contra el polvo.",
+    "precio": 3100,
+    "categoria": "Muebles",
+    "imagen": "https://images.unsplash.com/photo-1622114631326-7bc28c0a87a2?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "13",
+    "nombre": "Jabón Blanco en Pan 200g",
+    "descripcion": "Tradicional para lavado manual de prendas delicadas y manchas.",
+    "precio": 850,
+    "categoria": "Ropa",
+    "imagen": "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "14",
+    "nombre": "Quitamanchas en Polvo Oxi",
+    "descripcion": "Poderoso contra manchas de vino, café y grasa en ropa blanca.",
+    "precio": 3600,
+    "categoria": "Ropa",
+    "imagen": "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "15",
+    "nombre": "Cera Líquida para Pisos de Madera",
+    "descripcion": "Nutre la madera y da un acabado autobrillante de larga duración.",
+    "precio": 3900,
+    "categoria": "Pisos",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "16",
+    "nombre": "Limpiador de Pisos Flavored Bebé",
+    "descripcion": "Aroma suave hipoalergénico ideal para hogares con niños.",
+    "precio": 2100,
+    "categoria": "Pisos",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "17",
+    "nombre": "Alcohol en Gel Desinfectante 500ml",
+    "descripcion": "Higiene instantánea de manos con aloe vera humectante.",
+    "precio": 1750,
+    "categoria": "Higiene",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "18",
+    "nombre": "Desodorante de Ambiente Aerosol",
+    "descripcion": "Elimina malos olores dejando fragancia a brisa marina.",
+    "precio": 1950,
+    "categoria": "Ambiente",
+    "imagen": "https://images.unsplash.com/photo-1622114631326-7bc28c0a87a2?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "19",
+    "nombre": "Gel Inodoro Desinfectante Directo",
+    "descripcion": "Aplica una capa continua que limpia en cada descarga.",
+    "precio": 1600,
+    "categoria": "Baño",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "20",
+    "nombre": "Bolsas de Residuos 50x60 (10U)",
+    "descripcion": "Resistentes con fondo antigoteo para cocina y baño.",
+    "precio": 1100,
+    "categoria": "Bolsas",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "21",
+    "nombre": "Bolsas Consorcio Reforzadas (10U)",
+    "descripcion": "Medidas 80x100, alta densidad para residuos pesados.",
+    "precio": 2400,
+    "categoria": "Bolsas",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "22",
+    "nombre": "Guantes de Látex Talle M",
+    "descripcion": "Flexibles y resistentes con interior afelpado antideslizante.",
+    "precio": 1350,
+    "categoria": "Accesorios",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "23",
+    "nombre": "Guantes Nitrilo Desechables (50U)",
+    "descripcion": "Sin talco, ideales para manipulación de químicos o comida.",
+    "precio": 4800,
+    "categoria": "Accesorios",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "24",
+    "nombre": "Cerezo Difusor Automático Repuesto",
+    "descripcion": "Fragancia continua hasta 60 días en ambientes cerrados.",
+    "precio": 3400,
+    "categoria": "Ambiente",
+    "imagen": "https://images.unsplash.com/photo-1622114631326-7bc28c0a87a2?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "25",
+    "nombre": "Insecticida en Aerosol Casa y Jardín",
+    "descripcion": "Eficacia inmediata contra moscas, mosquitos y hormigas.",
+    "precio": 2700,
+    "categoria": "Insecticidas",
+    "imagen": "https://images.unsplash.com/photo-1622114631326-7bc28c0a87a2?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "26",
+    "nombre": "Cebo Cucarachicida en Gel",
+    "descripcion": "Aplica en zócalos e grietas con efecto dominó de colonia.",
+    "precio": 2200,
+    "categoria": "Insecticidas",
+    "imagen": "https://images.unsplash.com/photo-1622114631326-7bc28c0a87a2?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "27",
+    "nombre": "Detergente Lavavajillas Automático Gel",
+    "descripcion": "Fórmula concentrada con enzimas para vajilla impecable.",
+    "precio": 5200,
+    "categoria": "Vajilla",
+    "imagen": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "28",
+    "nombre": "Abrillantador Lavavajillas 500ml",
+    "descripcion": "Acelera el secado y evita la formación de gotas secas.",
+    "precio": 2900,
+    "categoria": "Vajilla",
+    "imagen": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "29",
+    "nombre": "Lana de Acero Inoxidable 2U",
+    "descripcion": "Remueve la comida quemada de ollas de aluminio y hierro.",
+    "precio": 950,
+    "categoria": "Accesorios",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "30",
+    "nombre": "Limpia Alfombras y Tapizados Espuma",
+    "descripcion": "Infiltración profunda que seca rápido sin alterar los colores.",
+    "precio": 3800,
+    "categoria": "Superficies",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "31",
+    "nombre": "Desinfectante de Superficies en Spray",
+    "descripcion": "Apto para picaportes, celulares y zonas de contacto diario.",
+    "precio": 2300,
+    "categoria": "Desinfectantes",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "32",
+    "nombre": "Limpiador de Metales y Bronce",
+    "descripcion": "Restaura el brillo original eliminando el óxido superficial.",
+    "precio": 3100,
+    "categoria": "Superficies",
+    "imagen": "https://images.unsplash.com/photo-1622114631326-7bc28c0a87a2?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "33",
+    "nombre": "Jabón Líquido Ropa Delicada Lana",
+    "descripcion": "Cuidado ultrasuave para prendas de hilo, seda y lana.",
+    "precio": 4100,
+    "categoria": "Ropa",
+    "imagen": "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "34",
+    "nombre": "Facilitador de Planchado Frescura",
+    "descripcion": "Alisa arrugas rebeldes dejando un suave aroma a limpio.",
+    "precio": 2250,
+    "categoria": "Ropa",
+    "imagen": "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "35",
+    "nombre": "Destapacañerías en Gel Fuerte",
+    "descripcion": "Disuelve restos orgánicos, pelos y grasa retenida en tuberías.",
+    "precio": 3300,
+    "categoria": "Baño",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "36",
+    "nombre": "Pastilla Desodorante Mochila Inodoro",
+    "descripcion": "Colorea el agua de azul desinfectando en cada descarga.",
+    "precio": 1150,
+    "categoria": "Baño",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "37",
+    "nombre": "Escoba de Cerdas Suaves Interior",
+    "descripcion": "Captura el polvo fino sin rayar parquet o porcelanato.",
+    "precio": 2600,
+    "categoria": "Herramientas",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "38",
+    "nombre": "Escobillón Exterior Cerdas Duras",
+    "descripcion": "Ideal para barrer hojas y barro en veredas o garajes.",
+    "precio": 2900,
+    "categoria": "Herramientas",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "39",
+    "nombre": "Secador de Pisos Goma Doble 40cm",
+    "descripcion": "Arrastra el agua de una sola pasada sin dejar charcos.",
+    "precio": 2700,
+    "categoria": "Herramientas",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "40",
+    "nombre": "Mopa Microfibra con Balde Escurridor",
+    "descripcion": "Sistema centrífugo giratorio para limpiar sin mojarte las manos.",
+    "precio": 14500,
+    "categoria": "Herramientas",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "41",
+    "nombre": "Repuesto Mopa Giratoria Microfibra",
+    "descripcion": "Cabezal de microfibra lavable en lavarropas de alta absorción.",
+    "precio": 2100,
+    "categoria": "Herramientas",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "42",
+    "nombre": "Balde Plástico Reforzado 12L",
+    "descripcion": "Con pico vertedor y mango metálico ergonómico.",
+    "precio": 2300,
+    "categoria": "Herramientas",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "43",
+    "nombre": "Plumero de Microfibra Extensible",
+    "descripcion": "Llega a techos, ventiladores y molduras atrajo polvo estático.",
+    "precio": 3200,
+    "categoria": "Herramientas",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "44",
+    "nombre": "Pala Recolectora con Cierre Antiviento",
+    "descripcion": "Goma flexible en el borde para recoger hasta el polvo fino.",
+    "precio": 2800,
+    "categoria": "Herramientas",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "45",
+    "nombre": "Limpia Pantallas TV y Laptop Kit",
+    "descripcion": "Spray antiestático + paño suave sin rayas para pantallas táctiles.",
+    "precio": 2950,
+    "categoria": "Tecnología",
+    "imagen": "https://images.unsplash.com/photo-1622114631326-7bc28c0a87a2?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "46",
+    "nombre": "Aire Comprimido Limpieza Teclados",
+    "descripcion": "Remueve migas y polvo retenido en componentes electrónicos.",
+    "precio": 4300,
+    "categoria": "Tecnología",
+    "imagen": "https://images.unsplash.com/photo-1622114631326-7bc28c0a87a2?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "47",
+    "nombre": "Antihumedad Absorbedor Repuesto 250g",
+    "descripcion": "Atrapa la humedad del aire previniendo hongos y olor a encerrado.",
+    "precio": 1800,
+    "categoria": "Ambiente",
+    "imagen": "https://images.unsplash.com/photo-1622114631326-7bc28c0a87a2?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "48",
+    "nombre": "Bolsa Antihumedad para Placard",
+    "descripcion": "Con gancho incorporado para colgar entre la ropa.",
+    "precio": 1400,
+    "categoria": "Ambiente",
+    "imagen": "https://images.unsplash.com/photo-1622114631326-7bc28c0a87a2?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "49",
+    "nombre": "Aromatizador Textil Nube de Algodón",
+    "descripcion": "Perfuma sábanas, cortinas y prendas recién planchadas.",
+    "precio": 2600,
+    "categoria": "Ambiente",
+    "imagen": "https://images.unsplash.com/photo-1622114631326-7bc28c0a87a2?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "50",
+    "nombre": "Gel Quitamanchas Directo Cuellos",
+    "descripcion": "Aplicador con cepillo suave para roces de camisa y puños.",
+    "precio": 2200,
+    "categoria": "Ropa",
+    "imagen": "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "51",
+    "nombre": "Detergente Ecológico Biodegradable",
+    "descripcion": "Fórmula sustentable a base de plantas libre de sulfatos.",
+    "precio": 3100,
+    "categoria": "Vajilla",
+    "imagen": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "52",
+    "nombre": "Pastillas Sanitizantes para Lavarropas",
+    "descripcion": "Elimina sarro y restos de jabón acumulados en el tambor.",
+    "precio": 2500,
+    "categoria": "Ropa",
+    "imagen": "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "53",
+    "nombre": "Limpia Motores Degreaser 500ml",
+    "descripcion": "Desengrasante industrial para partes mecánicas y herramientas.",
+    "precio": 4900,
+    "categoria": "Auto",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "54",
+    "nombre": "Shampoo Vehicular con Cera Siliconada",
+    "descripcion": "Lava y deja una capa repelente al agua y al polvo en la carrocería.",
+    "precio": 3700,
+    "categoria": "Auto",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "55",
+    "nombre": "Revividor de Neumáticos y Plásticos",
+    "descripcion": "Restaura el negro profundo del caucho protegiendo contra el sol.",
+    "precio": 3200,
+    "categoria": "Auto",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "56",
+    "nombre": "Limpia Llantas Efecto Ácido Neutro",
+    "descripcion": "Remueve el polvo de freno acumulado sin dañar la pintura.",
+    "precio": 4100,
+    "categoria": "Auto",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "57",
+    "nombre": "Lava Tapizados de Autos Espuma Seca",
+    "descripcion": "Elimina manchas de bebidas o comida en asientos de tela.",
+    "precio": 3950,
+    "categoria": "Auto",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "58",
+    "nombre": "Cepillo Limpia Mamparas y Vidrios",
+    "descripcion": "Diseño ergonómico con goma escurridora para la ducha.",
+    "precio": 1850,
+    "categoria": "Herramientas",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "59",
+    "nombre": "Cepillo Limpia Inodoros de Silicona",
+    "descripcion": "Higiénico, antiadherente y llega a todos los ángulos del retrete.",
+    "precio": 2700,
+    "categoria": "Herramientas",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "60",
+    "nombre": "Pastillas Cloro Triple Acción 200g",
+    "descripcion": "Mantiene el agua de la pileta cristalina, limpia y desinfectada.",
+    "precio": 1900,
+    "categoria": "Pileta",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "61",
+    "nombre": "Alguicida Concentrado Pileta 1L",
+    "descripcion": "Previene y elimina la formación de verdín en paredes.",
+    "precio": 3400,
+    "categoria": "Pileta",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "62",
+    "nombre": "Clarificador Precipitante Pileta",
+    "descripcion": "Agrupa partículas en suspensión depositándolas en el fondo.",
+    "precio": 3100,
+    "categoria": "Pileta",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "63",
+    "nombre": "Limpia Cuero Crema Acondicionadora",
+    "descripcion": "Evita el resecamiento y fisuras en sillones o vestimenta de cuero.",
+    "precio": 4500,
+    "categoria": "Muebles",
+    "imagen": "https://images.unsplash.com/photo-1622114631326-7bc28c0a87a2?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "64",
+    "nombre": "Detergente Neutro para Mármol y Granito",
+    "descripcion": "No altera el pH de las piedras naturales protegiendo el pulido.",
+    "precio": 2900,
+    "categoria": "Cocina",
+    "imagen": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "65",
+    "nombre": "Limpia Calzados Espuma Blanqueadora",
+    "descripcion": "Restaura la suela blanca de zapatillas sin usar agua.",
+    "precio": 3300,
+    "categoria": "Ropa",
+    "imagen": "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "66",
+    "nombre": "Desinfectante Amonio Cuaternario 1L",
+    "descripcion": "Uso profesional para clínicas, comercios o desinfección profunda.",
+    "precio": 4200,
+    "categoria": "Desinfectantes",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "67",
+    "nombre": "Filtro Atrapapelusas para Lavarropas",
+    "descripcion": "Captura restos de hilos y pelo de mascotas durante el lavado.",
+    "precio": 1250,
+    "categoria": "Accesorios",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "68",
+    "nombre": "Limpia Microondas Vaporizador Limón",
+    "descripcion": "Desprende grasa interna usando vapor de agua de manera natural.",
+    "precio": 1650,
+    "categoria": "Cocina",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "69",
+    "nombre": "Esponja Mágica Melamina Borradora",
+    "descripcion": "Borra marcas de lápiz o roces en paredes sin usar limpiadores.",
+    "precio": 1100,
+    "categoria": "Accesorios",
+    "imagen": "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "70",
+    "nombre": "Jabón Líquido Antibacterial Manos 250ml",
+    "descripcion": "Protección suave de manos con aroma a coco y crema humectante.",
+    "precio": 1500,
+    "categoria": "Higiene",
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
   }
 ]
