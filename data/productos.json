@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "nombre": "Detergente Premium",
+    "descripcion": "Rinde el doble, remueve grasa difícil y cuida tus manos.",
+    "precio": 2500,
+    "imagen": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "2",
+    "nombre": "Desinfectante Lavanda",
+    "descripcion": "Elimina el 99.9% de bacterias con un aroma floral duradero.",
+    "precio": 1800,
+    "imagen": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop&q=60"
+  },
+  {
+    "id": "3",
+    "nombre": "Limpiavidrios Pro",
+    "descripcion": "Brillo transparente sin dejar vetas ni marcas de agua.",
+    "precio": 2100,
+    "imagen": "https://images.unsplash.com/photo-1622114631326-7bc28c0a87a2?w=500&auto=format&fit=crop&q=60"
+  }
+]
